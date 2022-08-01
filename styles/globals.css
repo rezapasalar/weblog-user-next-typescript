@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "~vazirmatn/Vazirmatn-font-face.css";
+
+@layer base {
+  * {
+    font-family: Vazirmatn, sans-serif;
+  }
+}
+
+.Toastify__toast-theme--dark {
+  background: rgb(41, 49, 61) !important
+}
