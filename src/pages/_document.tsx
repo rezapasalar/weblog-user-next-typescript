@@ -1,9 +1,13 @@
+import { FC } from 'react'
 import { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document () {
+interface Props {
+    locale: string
+}
 
+const Document: FC<Props> = ({locale}: Props) => {
     return (
-        <Html>
+        <Html dir={`${locale === 'fa' ? 'rtl' : 'ltr'}`}>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -14,3 +18,9 @@ export default function Document () {
         </Html>
     )
 }
+
+export function getInitialProps ({locale}: {locale: string}) {
+    return { locale: locale || 'fa' }
+}
+
+export default Document
