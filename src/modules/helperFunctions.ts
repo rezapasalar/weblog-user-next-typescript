@@ -15,4 +15,4 @@ export const timestampToPersianDate = (timestamp: any, locale: string = 'fa-IR')
 
 export const getCurrentPersianYear = (digit: string = 'fa') => digit === 'fa' ? convertDateToPersianDate(Date.now()).split(' ')[2] : convertLocaleDigits(convertDateToPersianDate(Date.now()).split(' ')[2])
 
-export const getTheme = (): {theme: string} => (!('theme' in localStorage) || (localStorage.theme !== 'dark' && localStorage.theme !== 'light')) ? {theme: 'light'} : {theme: localStorage.theme}
+export const getTheme = (): {theme: any} => (!('theme' in localStorage) || (localStorage.theme !== 'dark' && localStorage.theme !== 'light')) ? {theme: 'light'} : {theme: localStorage.theme}

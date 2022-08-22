@@ -1,54 +1,41 @@
-import { object, string, ref } from 'yup'
-import { messages, transfer } from '.'
+import { object, string, number, ref } from 'yup'
+import { UserFlex } from '../models/user'
+import { t } from '../config/i18n'
+import { getCurrentPersianYear } from '../modules/helperFunctions'
 import { searchUserService } from '../services/users'
 
-export const initialData = {
+export const initialValues: UserFlex = {
     is_admin: 0,
     name: '',
     family: '',
-    day: '',
-    month: '',
-    year: '',
+    day: undefined,
+    month: undefined,
+    year: undefined,
     email: '',
     password: '',
     passwordConfirmation: ''
 }
 
-export const registerSchema = (language: string = 'fa') => { 
+export const registerSchema = (language: string) => {
+
+    const isLanguageFa: boolean = language === 'fa'
+    const ADYear: number = new Date().getFullYear()
+
     return object({
-        name: 
-            string()
-            .required(transfer({rule: 'required', field: 'name', language}))
-        ,family:
-            string()
-            .required(transfer({rule: 'required', field: 'family', language}))
-        ,day: 
-            string()
-            .required(transfer({rule: 'required', field: 'day', language}))
-        ,month: 
-            string()
-            .required(transfer({rule: 'required', field: 'month', language}))
-        ,year: 
-            string()
-            .required(transfer({rule: 'required', field: 'year', language}))
-        ,email:
-            string()
-            .required(transfer({rule: 'required', field: 'email', language}))
-            .email(messages[language]['email'])
+        name: string().required(),
+        family: string().required(),
+        day: number().required().min(1).max(31),
+        month: number().required().min(1).max(12),
+        year: number().required().min(isLanguageFa ? getCurrentPersianYear('en') - 80 : ADYear - 80).max(isLanguageFa ? getCurrentPersianYear('en') : ADYear),
+        email: string().required().email()
             .test({
-                message: () => transfer({rule: 'duplicate', field: 'email', language}),
-                test: async (email: any, {parent: {id}}) => {
+                message: (): string => t('validation.messages.duplicate', {attribute: t('validation.attributes.email')}),
+                test: async (email: any, ref: {parent: {id: number}}) => {
                     const {data: {data}} = await searchUserService('email', email)
-                    return data.length && data[0].id !== id ? false : true
+                    return data.length && data[0].id !== ref.parent.id ? false : true
                 }
-            })
-        ,password:
-            string()
-            .required(transfer({rule: 'required', field: 'password', language}))
-            .min(8, transfer({rule: 'min', field: 'password', value: 8, language}))
-            .max(32, transfer({rule: 'max', field: 'password', value: 32, language}))
-        ,passwordConfirmation:
-            string()
-            .oneOf([ref('password'), null], messages[language]['confirmed'])
+            }),
+        password: string().required().min(8).max(32),
+        passwordConfirmation: string().required().oneOf([ref('password')])
     })
 }

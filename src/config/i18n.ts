@@ -14,4 +14,8 @@ i18n
         }
     })
 
+export const t = i18n.t
+
+export const language = i18n.language
+
 export default i18n

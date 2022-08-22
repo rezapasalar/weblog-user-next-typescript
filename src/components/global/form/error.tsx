@@ -1,7 +1,7 @@
-import { FC, memo } from 'react'
+import { FC, memo, ReactNode } from 'react'
 
 interface Props {
-    message: string
+    message: string | ReactNode
 }
 
 const ErrorElement: FC<Props> = ({message}) => {

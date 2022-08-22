@@ -10,6 +10,7 @@ import layout from './layout'
 import panel from './panel'
 import pagination from './pagination'
 import errors from './errors'
+import validation from './validation'
 
 export default {
     translation: {
@@ -24,6 +25,7 @@ export default {
         layout,
         panel,
         pagination,
-        errors
+        errors,
+        validation
     }
 }

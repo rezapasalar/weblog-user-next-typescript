@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
-import '../config/i18n'
+import '../config'
 
 import '../styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'

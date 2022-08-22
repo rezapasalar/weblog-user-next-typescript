@@ -5,7 +5,7 @@ import ErrorElement from './error'
 interface Props {
     children: ReactNode,
     label: string,
-    error?: string,
+    error?: string | ReactNode,
     alert?: any
 }
 
