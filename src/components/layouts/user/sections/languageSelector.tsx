@@ -11,7 +11,6 @@ const LanguageSelector: FC = () => {
 
     const changeLang = (lng: string) => {
         changeLanguage(lng)
-        localStorage.locale = lng
         document.querySelector<any>('html').dir = lng === 'fa' ? 'rtl' : 'ltr'
     }
 
