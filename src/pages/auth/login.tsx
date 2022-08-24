@@ -53,7 +53,7 @@ const Login: NextPage & any = () => {
                         {({errors, isSubmitting}) => (
                             <Form>
                                 <InputFormik label={t('fields.email')} name="email" dir="ltr" />
-                                <InputFormik label={t('fields.password')} name="password" dir="ltr" />
+                                <InputFormik type="password" label={t('fields.password')} name="password" dir="ltr" />
                                 <ButtonLoading onClick={() => checkFormError(Object.keys(errors).length)} isSubmit={isSubmitting} type="submit" widthFull className="mt-6">{t('buttons.login')}</ButtonLoading>
                             </Form>
                         )}

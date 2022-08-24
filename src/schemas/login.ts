@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 
 export const initialValues: {email: string, password: string} = {
     email: 'mitra@yahoo.com',
-    password: '11111111'
+    password: '12345678'
 }
 
 export const loginSchema = Yup.object().shape({
