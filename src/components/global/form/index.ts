@@ -5,6 +5,7 @@ import Select from './select'
 import DateBirth from './dateBirth'
 import Button from '../elements/button'
 import ButtonL from '../loadings/button'
+import ButtonG from '../elements/buttonGroup'
 
 export const PageWrap = Page
 export const ColumnGridWrap = ColumnGrid
@@ -13,3 +14,4 @@ export const SelectForm = Select
 export const DateBirthForm = DateBirth
 export const ButtonElement = Button
 export const ButtonLoading = ButtonL
+export const ButtonGroup = ButtonG

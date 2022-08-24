@@ -1,16 +1,14 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
-import dynamic from 'next/dynamic'
-import { FormEvent, useEffect } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useSelector, useDispatch } from 'react-redux'
-import useForm from '../../hooks/useForm'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import { RootState } from '../../store'
 import { Formik, Form } from 'formik'
 
-import { PageWrap, ColumnGridWrap, InputFormik, NameFamilyFormik, DateBirthFormik, ButtonLoading } from '../../components/global/formik'
+import { PageWrap, ColumnGridWrap, InputFormik, NameFamilyFormik, DateBirthFormik, ButtonLoading, ButtonGroup } from '../../components/global/formik'
 import { setUserInfo } from '../../store/slices/global'
 import { initialValues as initVal, profileSchema } from '../../schemas/profile'
 import { searchUserService } from '../../services/users'
@@ -79,7 +77,9 @@ const Profile: NextPage & any = () => {
                             <InputFormik name="email" dir="ltr" disabled />
                         </ColumnGridWrap>
                         
-                        <ButtonLoading onClick={() => checkFormError(Object.keys(errors).length)} isSubmit={isSubmitting} type="submit" widthFull className="mt-6">{t('buttons.register')}</ButtonLoading>
+                        <ButtonGroup>
+                            <ButtonLoading onClick={() => checkFormError(Object.keys(errors).length)} isSubmit={isSubmitting} type="submit" size="md">{t('buttons.register')}</ButtonLoading>
+                        </ButtonGroup>
                     </Form>
                 )}
             </Formik>
