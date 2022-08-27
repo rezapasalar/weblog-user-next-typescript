@@ -22,9 +22,11 @@ const MainModal: FC<Props> = ({size = 'md', children, modalStatus, cancelHandler
     useEffect(() => {
         if (modalStatus) {
             modalRef.current.scrollTo({top: 0})
-            document.querySelector<any>('body').classList.add('overflow-hidden')
-        } else {
-            document.querySelector<any>('body').classList.remove('overflow-hidden')
+            document.querySelector('body')?.classList.add('overflow-hidden')
+        }
+
+        return () => {
+            document.querySelector('body')?.classList.remove('overflow-hidden')
         }
     }, [modalStatus])
 
